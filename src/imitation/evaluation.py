@@ -7,8 +7,7 @@ import io
 import tempfile 
 from pathlib import Path 
 
-# import gym_pusht  # noqa: F401
-
+import gym_pusht  # noqa: F401
 import gymnasium as gym
 import imageio.v2 as imageio 
 import numpy as np
