@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import numpy as np
 import torch
+import tyro
 from torch.utils.data import DataLoader
 from datetime import datetime
 import wandb
@@ -38,6 +39,21 @@ class TrainConfig:
     seed: int = 52
     wandb_project: str = "push-t-imitation"
     exp_name: str| None = None
+    
+
+def parse_train_config(
+    args: list[str] | None = None,
+    *,
+    defaults: TrainConfig | None = None,
+    description: str = "Train a Push-T MLP policy",
+)-> TrainConfig:
+    defaults = defaults or TrainConfig()
+    return tyro.cli(
+        TrainConfig,
+        args=args,
+        default=defaults,
+        description=description
+    )
 
 def set_seed(seed: int) -> None:
     np.random.seed(seed)
@@ -128,7 +144,7 @@ def run_training(config: TrainConfig) -> None:
     
     
 def main() -> None:
-    config = TrainConfig()
+    config = parse_train_config()
     run_training(config)
         
 
