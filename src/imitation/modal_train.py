@@ -2,7 +2,7 @@ from pathlib import Path
 
 import modal
 
-from hw1_imitation.train import TrainConfig, parse_train_config, run_training
+from imitation.train import TrainConfig, parse_train_config, run_training
 
 
 APP_NAME = "hw1-imitation"
